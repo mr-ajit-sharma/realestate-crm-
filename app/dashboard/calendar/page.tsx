@@ -16,7 +16,7 @@ export default function CalendarPage() {
   const createTaskMutation = useCreateTask();
 
   // Filter tasks for current month
-  const currentMonthTasks = tasks.filter(task => {
+  const currentMonthTasks = tasks.filter((task: any)  => {
     const taskDate = new Date(task.dueDate);
     return taskDate.getMonth() === currentDate.getMonth() &&
            taskDate.getFullYear() === currentDate.getFullYear();
@@ -63,7 +63,7 @@ export default function CalendarPage() {
     // Actual days
     for (let day = 1; day <= daysInMonth; day++) {
       const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-      const dayTasks = currentMonthTasks.filter(task => 
+      const dayTasks = currentMonthTasks.filter((task: any)  => 
         task.dueDate.startsWith(dateStr)
       );
 
