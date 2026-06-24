@@ -1,12 +1,16 @@
 'use client';
 
+type Key = string | number;
+
+type RowLike = Record<string, unknown> & { _id?: string; id?: string };
+
 interface DataTableProps {
   columns: {
     header: string;
     accessor: string;
   }[];
-  data: any[];
-  onRowClick?: (row: any) => void;
+  data: RowLike[];
+  onRowClick?: (row: RowLike) => void;
 }
 
 export default function DataTable({
@@ -14,6 +18,10 @@ export default function DataTable({
   data,
   onRowClick,
 }: DataTableProps) {
+  const getNestedValue = (obj: any, path: string) => {
+  return path.split('.').reduce((acc, key) => acc?.[key], obj);
+};
+
   return (
     <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-800">
       <table className="w-full divide-y divide-gray-200 dark:divide-gray-800">
@@ -30,22 +38,32 @@ export default function DataTable({
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
-          {data.map((row, idx) => (
-            <tr
-              key={idx}
-              onClick={() => onRowClick?.(row)}
-              className="hover:bg-gray-50 dark:hover:bg-gray-900/50 cursor-pointer"
-            >
-              {columns.map((col) => (
-                <td
-                  key={col.accessor}
-                  className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300"
-                >
-                  {row[col.accessor] ?? '-'}
-                </td>
-              ))}
-            </tr>
-          ))}
+          {data.map((row, idx) => {
+            const key = (row as any).id ?? (row as any)._id ?? idx;
+            return (
+              <tr
+                key={key}
+                onClick={() => onRowClick?.(row)}
+                className="hover:bg-gray-50 dark:hover:bg-gray-900/50 cursor-pointer"
+              >
+                {columns.map((col) => {
+                  const value = getNestedValue(row, col.accessor);
+                  return (
+                    <td
+                      key={col.accessor}
+                      className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300"
+                    >
+                      {typeof value === 'string' || typeof value === 'number'
+                        ? value
+                        : value === null || value === undefined
+                          ? '-'
+                          : JSON.stringify(value)}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

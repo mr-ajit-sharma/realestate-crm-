@@ -9,17 +9,17 @@ interface KanbanBoardProps {
 }
 
 const statusOrder: Deal['status'][] = [
-  'Pending',
-  'In Progress',
-  'Closed Won',
-  'Closed Lost',
+  'PENDING',
+  'IN_PROGRESS',
+  'CLOSED_WON',
+  'CLOSED_LOST',
 ];
 
 const statusLabels: Record<Deal['status'], string> = {
-  Pending: 'Pending',
-  'In Progress': 'In Progress',
-  'Closed Won': 'Won',
-  'Closed Lost': 'Lost',
+  PENDING: 'Pending',
+  IN_PROGRESS: 'In Progress',
+  CLOSED_WON: 'Won',
+  CLOSED_LOST: 'Lost',
 };
 
 export default function KanbanBoard({ deals = [], onCardClick }: KanbanBoardProps) {

@@ -6,6 +6,7 @@ import { useUIStore } from '@/store/uiStore';
 import {
   LayoutDashboard,
   Users,
+  StarsIcon,
   Home,
   TrendingUp,
   CheckSquare,
@@ -14,7 +15,8 @@ import {
 
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard' },
-  { icon: Users, label: 'Leads', href: '/dashboard/contacts' },
+  { icon: Users, label: 'Contacts', href: '/dashboard/contacts' },
+  { icon: StarsIcon, label: 'Leads', href: '/dashboard/leads' },
   { icon: Home, label: 'Properties', href: '/dashboard/properties' },
   { icon: TrendingUp, label: 'Deals', href: '/dashboard/deals' },
   { icon: CheckSquare, label: 'Tasks', href: '/dashboard/tasks' },

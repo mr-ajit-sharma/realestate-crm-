@@ -2,7 +2,6 @@
 
 import { Property } from '@/types';
 import { formatCurrency } from '@/lib/utils';
-import Image from 'next/image';
 
 interface PropertyCardProps {
   property: Property;
@@ -10,20 +9,19 @@ interface PropertyCardProps {
 }
 
 export default function PropertyCard({ property, onClick }: PropertyCardProps) {
+  const imageUrl = property.imageUrls?.[0];
+
   return (
     <div
       onClick={onClick}
       className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:shadow-lg cursor-pointer"
     >
-      {property.images && property.images.length > 0 ? (
-        <div className="relative h-48 w-full">
-          <Image
-            src={property.images[0]}
-            alt={property.title}
-            fill
-            className="object-cover"
-          />
-        </div>
+      {imageUrl ? (
+        <img
+          src={imageUrl}
+          alt={property.title}
+          className="h-48 w-full object-cover"
+        />
       ) : (
         <div className="h-48 w-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
           <span className="text-gray-400">No Image</span>

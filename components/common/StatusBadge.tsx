@@ -1,11 +1,11 @@
 'use client';
 
-import { STATUS_COLORS, PRIORITY_COLORS } from '@/lib/constants';
+import { STATUS_COLORS, STATUS_LABELS, PRIORITY_COLORS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 
 interface StatusBadgeProps {
-  status: string;
-  variant?: 'status' | 'priority';
+  readonly status: string;
+  readonly variant?: 'status' | 'priority';
 }
 
 export default function StatusBadge({
@@ -15,6 +15,7 @@ export default function StatusBadge({
   const colors =
     variant === 'priority' ? PRIORITY_COLORS : STATUS_COLORS;
   const colorClass = colors[status] || 'bg-gray-100 text-gray-800';
+  const label = variant === 'status' ? STATUS_LABELS[status] ?? status : status;
 
   return (
     <span
@@ -23,7 +24,7 @@ export default function StatusBadge({
         colorClass
       )}
     >
-      {status}
+      {label}
     </span>
   );
 }

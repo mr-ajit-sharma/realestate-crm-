@@ -32,10 +32,11 @@ export default function KanbanColumn({
       <div className="flex-1 space-y-3 overflow-auto">
         {columnDeals.map((deal) => (
           <KanbanCard
-            key={deal.id}
+            key={deal._id}
             deal={deal}
             onClick={() => onCardClick?.(deal)}
           />
+
         ))}
       </div>
     </div>
