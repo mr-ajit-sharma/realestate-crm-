@@ -1,6 +1,7 @@
 // hooks/useDeals.ts
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { dealsApi, UpdateDealStatusInput } from '@/lib/services/deals';
+import { dealsApi } from '@/lib/services/deals';
+import { UpdateDealStatusInput } from '@/types';
 
 export const useDeals = (params?: any) => {
   return useQuery({

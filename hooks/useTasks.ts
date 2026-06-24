@@ -1,6 +1,7 @@
 // hooks/useTasks.ts
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { tasksApi, CreateTaskInput } from '@/lib/services/tasks';
+import { tasksApi } from '@/lib/services/tasks';
+import { CreateTaskInput } from '@/types';
 
 export const useTasks = (params?: any) => {
   return useQuery({

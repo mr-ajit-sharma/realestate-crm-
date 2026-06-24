@@ -6,11 +6,11 @@ import { formatCurrency } from '@/lib/utils';
 interface KanbanCardProps {
   deal: Deal;
   onClick?: () => void;
+  progress?: number;
 }
 
 export default function KanbanCard({ deal, onClick }: KanbanCardProps) {
-  const progress = deal.progress ?? (deal.status === 'CLOSED_WON' ? 100 : deal.status === 'IN_PROGRESS' ? 50 : 20);
-
+  const progress = deal.status === 'CLOSED_WON' ? 100 : deal.status === 'IN_PROGRESS' ? 50 : 20;
   return (
     <div
       onClick={onClick}

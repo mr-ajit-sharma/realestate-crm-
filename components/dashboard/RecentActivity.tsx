@@ -4,7 +4,7 @@ import { Clock, RefreshCw, User } from 'lucide-react';
 import { useMemo } from 'react';
 import { useDashboardMetrics } from '@/hooks/useDashboard';
 import { formatRelativeTime } from '@/lib/utils';
-import type { RecentActivityItem } from '@/lib/services/dashboard';
+import type { RecentActivityItem } from '@/types';
 
 function SkeletonRow() {
   return (

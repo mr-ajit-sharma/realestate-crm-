@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useCreateProperty } from '@/hooks/useProperties';
-import type { CreatePropertyPayload } from '@/lib/services/properties';
+import type { CreatePropertyPayload } from '@/types';
 
 type Props = {
   isOpen: boolean;
@@ -70,7 +70,7 @@ export default function AddPropertyModal({ isOpen, onClose, onSuccess }: Props) 
   };
 
   const handleChange = <K extends keyof CreatePropertyPayload>(key: K, value: CreatePropertyPayload[K]) => {
-    setForm((prev) => ({ ...prev, [key]: value }));
+    setForm((prev: CreatePropertyPayload) => ({ ...prev, [key]: value }));
     if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
   };
 
@@ -83,7 +83,7 @@ export default function AddPropertyModal({ isOpen, onClose, onSuccess }: Props) 
   };
 
   const removeFeature = (feat: string) => {
-    handleChange('features', form.features?.filter((f) => f !== feat) ?? []);
+    handleChange('features', form.features?.filter((f: string) => f !== feat));
   };
 
   const addImageUrl = () => {
@@ -95,7 +95,7 @@ export default function AddPropertyModal({ isOpen, onClose, onSuccess }: Props) 
   };
 
   const removeImageUrl = (url: string) => {
-    handleChange('imageUrls', form.imageUrls?.filter((u) => u !== url) ?? []);
+    handleChange('imageUrls', form.imageUrls?.filter((u: string) => u !== url));
   };
 
   const handleSubmit = () => {
@@ -281,7 +281,7 @@ export default function AddPropertyModal({ isOpen, onClose, onSuccess }: Props) 
               </div>
               {(form.features?.length ?? 0) > 0 && (
                 <div className="flex flex-wrap gap-2 mt-2">
-                  {form.features!.map((feat) => (
+                  {form.features!.map((feat: string) => (
                     <span
                       key={feat}
                       className="flex items-center gap-1 px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-md"
@@ -315,7 +315,7 @@ export default function AddPropertyModal({ isOpen, onClose, onSuccess }: Props) 
               </div>
               {(form.imageUrls?.length ?? 0) > 0 && (
                 <ul className="mt-2 space-y-1">
-                  {form.imageUrls!.map((url) => (
+                  {form.imageUrls!.map((url: string) => (
                     <li key={url} className="flex items-center justify-between text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded">
                       <span className="truncate flex-1 mr-2">{url}</span>
                       <button onClick={() => removeImageUrl(url)} className="text-red-400 hover:text-red-600 shrink-0">×</button>

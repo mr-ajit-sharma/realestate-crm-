@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { leadsApi, Lead } from '@/lib/services/leads';
+import { leadsApi } from '@/lib/services/leads';
+import { Lead } from '@/types';
 
 export const leadKeys = {
   all: ['leads'] as const,

@@ -6,6 +6,7 @@ import KanbanColumn from './KanbanColumn';
 interface KanbanBoardProps {
   deals?: Deal[];
   onCardClick?: (deal: Deal) => void;
+  onStatusChange?: (dealId: any, newStatus: any) => Promise<void>;
 }
 
 const statusOrder: Deal['status'][] = [
