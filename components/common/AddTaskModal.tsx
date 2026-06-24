@@ -9,16 +9,17 @@ type Props = {
   onClose: () => void;
   onSubmit: (data: any) => void;
   isLoading: boolean;
+  defaultDate?: string;
 };
 
-export default function AddTaskModal({ isOpen, onClose, onSubmit, isLoading }: Props) {
+export default function AddTaskModal({ isOpen, onClose, onSubmit, isLoading,defaultDate  }: Props) {
   const { data: contacts = [] } = useContacts();
   const { data: leads = [] } = useLeads();
 
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    dueDate: '',
+    dueDate: defaultDate || '',
     priority: 'MEDIUM',
     taskType: 'FOLLOW_UP',
     contact: '',
@@ -64,7 +65,8 @@ export default function AddTaskModal({ isOpen, onClose, onSubmit, isLoading }: P
               <label className="block text-sm mb-1">Due Date *</label>
   <input 
     name="dueDate" 
-    type="date" 
+    type="date"
+    value={formData.dueDate}  
     required 
     onChange={handleChange} 
     className="w-full p-3 border rounded-lg dark:bg-gray-900" 
