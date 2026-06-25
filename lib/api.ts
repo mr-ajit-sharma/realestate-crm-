@@ -2,7 +2,7 @@ import axios, { AxiosError, type AxiosInstance } from 'axios';
 import { useAuthStore } from '@/store/authStore';
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5000/api';
-console.log(baseURL,'         5')
+
 export type ApiErrorPayload = { message?: string };
 
 function safeGetAuthToken() {

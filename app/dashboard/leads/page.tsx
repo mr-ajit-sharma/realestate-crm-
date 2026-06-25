@@ -13,7 +13,6 @@ export default function LeadsPage() {
   const handleCreateLead = async (formData: any) => {
     try {
       // Helpful for debugging 400s
-      console.log('[createLead] payload', formData);
 
       await createLeadMutation.mutateAsync(formData);
       setIsModalOpen(false);

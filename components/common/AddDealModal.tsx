@@ -7,9 +7,7 @@ import { useProperties } from '@/hooks/useProperties'; // Naya hook
 
 export default function AddDealModal({ isOpen, onClose, onSubmit, isLoading }: any) {
   const { data: contacts = [] } = useContacts();
-  console.log(contacts,'               10')
   const { data: leads = [] } = useLeads();
-  console.log(leads,'               12')
   const { data: properties = [] } = useProperties();
 
   const [formData, setFormData] = useState({
