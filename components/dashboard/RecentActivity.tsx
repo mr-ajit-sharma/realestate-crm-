@@ -30,8 +30,6 @@ export default function RecentActivity() {
     return Array.isArray(data.recentActivities) ? data.recentActivities : [];
   }, [data]);
 
-  console.log('📊 Raw data:', data);
-  console.log('📋 Activities count:', activities.length);
 
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900 h-full flex flex-col">
